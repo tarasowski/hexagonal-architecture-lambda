@@ -3,7 +3,7 @@ const save = require('./adapter-dynamodb').save
 
 module.exports.handler = (event) => {
     const number = event.number
-    const response = calculate(number, save)
+    const response = calculate(save, number)
     return response
 }
 
