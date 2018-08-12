@@ -13,12 +13,12 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 * **Adapters:** act as a layer which serve the purpose of transforming the communication between various external actors and application logic in such a way that both remain independent. In hexagonal architecture all the primary and secondary actors interact with the application ports through adapters.
 	* **Primary adapter:** is a piece of code between the user and the core logic. One adapter could be a unit test function for the core logic. Another could be a controller-like function that interacts both with the graphical user interface and the core logic. The primary adapter calls the API functions of the core logic.
 	* **Secondary adapter:** is an implementation of the secondary port (which is an interface). For instance, it can be a small class that converts application storage requests to a given database, and return the results of the database in a format requested by the secondary port. It can also be a mock database object needed to unit tests certain parts of the core logic. The core logic calls the functions of the secondary adapter.
-	* Examples: 
-		* REST Adapter Web API - interacts with events from AWS Gateway
-		* SQL Adapter - interacts with Aurora
-		* DynamoDB Adapter - interacts with DynamoDb
-		* Email adapter - interacts with emailing system
-		* Mocking adapters - You can also have a flat file adapter in case data needs to be persisted in text files and also an adapter for Mocking database for testing which just sits in the memory and acts as database.
+		* Examples: 
+			* REST Adapter Web API - interacts with events from AWS Gateway
+			* SQL Adapter - interacts with Aurora
+			* DynamoDB Adapter - interacts with DynamoDb
+			* Email adapter - interacts with emailing system
+			* Mocking adapters - You can also have a flat file adapter in case data needs to be persisted in text files and also an adapter for Mocking database for testing which just sits in the memory and acts as database.
 		
 ## Hexagonal Architecture Flow
 
