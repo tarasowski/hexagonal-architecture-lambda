@@ -8,7 +8,7 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 * **Ports (Use Case):** are the medium through which business logic is accessed. Port is a use case boundary i.e. Ports correspond to use-cases in the application. Simplest implementation of a Port can take form of an API / Facade layer (Façade defines a higher-level interface that makes the subsystem easier to use).
 	* **Primary Port:** Primary ports are the main API of the application. They are called by the primary adapters that form the user side of the application.
 	* **Secondary ports:** are the interfaces for the secondary adapters. They are called by the core logic. An example of a secondary port is an interface to store single objects. This interface simply specifies that an object be created, retrieved, updated, and deleted. It tells you nothing about the way the object is stored.
-	* Examples: methods e.g. saveToDatabase(), sendEmailToCustomer(), convertFile()
+		* Examples: methods e.g. saveToDatabase(), sendEmailToCustomer(), convertFile()
 
 * **Adapters:** act as a layer which serve the purpose of transforming the communication between various external actors and application logic in such a way that both remain independent. In hexagonal architecture all the primary and secondary actors interact with the application ports through adapters.
 	* **Primary adapter:** is a piece of code between the user and the core logic. One adapter could be a unit test function for the core logic. Another could be a controller-like function that interacts both with the graphical user interface and the core logic. The primary adapter calls the API functions of the core logic.
