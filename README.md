@@ -31,8 +31,8 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 
 
 ![Hexagonal](http://codingcanvas.com/wp-content/uploads/2015/07/image_thumb5.png)
-[Source](http://codingcanvas.com/hexagonal-architecture/)
-[Source](http://www.dossier-andreas.net/software_architecture/ports_and_adapters.html)
+* [Source](http://codingcanvas.com/hexagonal-architecture/)
+* [Source](http://www.dossier-andreas.net/software_architecture/ports_and_adapters.html)
 
 ---
 
