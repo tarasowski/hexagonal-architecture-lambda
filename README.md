@@ -1,7 +1,7 @@
 # Hexagonal Architecture Example (Sample)
 Basic overview how to use hexagonal architecture with AWS Lambda
 
-![Sample](./images/hexagonal-architecture-new.png)
+![Sample](./images/hexagonal-architecture-example.png)
 
 * Domain model: does not depend on any other layer; all other layers depend on the domain model.
 
