@@ -5,7 +5,7 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 
 * **Domain model (Core Logic):** does not depend on any other layer; all other layers depend on the domain model.
 
-* **Ports (Use Case):** are the medium through which business logic is accessed. Port is a use case boundary i.e. Ports correspond to use-cases in the application. Simplest implementation of a Port can take form of an API / Facade layer (Façade defines a higher-level interface that makes the subsystem easier to use).
+* **Ports (Use Case):** are the medium through which business logic is accessed. Port is a use case boundary i.e. Ports correspond to use-cases in the application. Simplest implementation of a Port can take form of an API / Facade layer (Façade defines a higher-level interface that makes the subsystem easier to use). A port is an entry point, provided by the core logic. It defines a set of functions.
 	* **Primary Port:** Primary ports are the main API of the application. They are called by the primary adapters that form the user side of the application.
 	* **Secondary ports:** are the interfaces for the secondary adapters. They are called by the core logic. An example of a secondary port is an interface to store single objects. This interface simply specifies that an object be created, retrieved, updated, and deleted. It tells you nothing about the way the object is stored.
 		* Examples: methods e.g. saveToDatabase(), sendEmailToCustomer(), convertFile()
@@ -28,6 +28,12 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 4. User input is processed by one or more primary adapter(s) and passed to the core logic.
 5. The core logic interacts with the secondary adapters only.
 6. Output of the core logic is returned to the primary adapters. They feed it back to the user.
+
+## Some Other Details
+
+* Dependency injection is used to pass the secondary adapters to the core logic
+* Secondary ports are implemented as interfaces. Secondary adapters implement these interfaces.
+* You could create a factory for adapters for a given service.
 
 
 ![Hexagonal](http://codingcanvas.com/wp-content/uploads/2015/07/image_thumb5.png)
