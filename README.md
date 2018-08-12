@@ -5,7 +5,7 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 
 * Domain model: does not depend on any other layer; all other layers depend on the domain model.
 
-* Ports: are the medium through which business logic is accessed. Port is a use case boundary i.e. Ports correspond to use-cases in the application. Simplest implementation of a Port can take form of an API / Facade layer (Façade defines a higher-level interface that makes the subsystem easier to use).
+* Ports (Use Case): are the medium through which business logic is accessed. Port is a use case boundary i.e. Ports correspond to use-cases in the application. Simplest implementation of a Port can take form of an API / Facade layer (Façade defines a higher-level interface that makes the subsystem easier to use).
 	* Examples: methods e.g. saveToDatabase(), sendEmailToCustomer(), convertFile()
 
 * Adapters: act as a layer which serve the purpose of transforming the communication between various external actors and application logic in such a way that both remain independent. In hexagonal architecture all the primary and secondary actors interact with the application ports through adapters.
