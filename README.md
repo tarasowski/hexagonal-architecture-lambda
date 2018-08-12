@@ -19,6 +19,7 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 
 ![Hexagonal](http://codingcanvas.com/wp-content/uploads/2015/07/image_thumb5.png)
 [Source](http://codingcanvas.com/hexagonal-architecture/)
+
 ---
 
 * The inside of our hexagon consists of three layers: the domain, the application, and the framework.
