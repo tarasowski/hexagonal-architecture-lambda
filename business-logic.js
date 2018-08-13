@@ -1,6 +1,6 @@
 module.exports = (number, saveToDatabase) => {
     const result = number * number
-    const response = saveToDatabase(result) // port to the database that get's injected
+    const response = saveNewValue(result) // port to the database that get's injected
     return response
 }
 
