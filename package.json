@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "test": "node ./node_modules/.bin/tape ./test/*.test.js"
+    }
+}
