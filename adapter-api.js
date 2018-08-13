@@ -1,4 +1,4 @@
-const calculateNewValueAndSave = require('./business-logic')
+const calculateNewValue = require('./business-logic')
 const saveNewValue = require('./adapter-dynamodb').save
 
 module.exports.handler = (event) => {
