@@ -1,9 +1,9 @@
 const calculateNewValueAndSave = require('./business-logic')
-const saveToDatabase = require('./adapter-dynamodb').save
+const saveNewValue = require('./adapter-dynamodb').save
 
 module.exports.handler = (event) => {
     const number = event.number
-    const response = calculateNewValue(number, saveToDatabase)
+    const response = calculateNewValue(number, saveNewValue)
     return response
 }
 
