@@ -1,6 +1,6 @@
-module.exports = (number, save) => {
+module.exports = (number, saveToDatabase) => {
     const result = number * number
-    const response = save(result) // port to the database that get's injected
+    const response = saveToDatabase(result) // port to the database that get's injected
     return response
 }
 
