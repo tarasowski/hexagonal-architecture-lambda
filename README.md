@@ -1,4 +1,4 @@
-# Hexagonal Architecture Example (Sample)
+# Hexagonal Architecture Example
 Basic overview how to use hexagonal architecture with AWS Lambda
 
 ![Sample](./images/hexagonal-architecture-revisited.png)
