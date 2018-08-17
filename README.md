@@ -1,9 +1,10 @@
 # Hexagonal Architecture Example
 Basic overview how to use hexagonal architecture with AWS Lambda
 
-![Sample](./images/hexagonal-version2.png)
+![Sample](./images/hexagonal-version-3.png)
 
 Figure above shows an application having two active ports and several adapters for each port. The two ports are the user side and the database side. The application can be driven by API Gateway, AppSync or Express app. These are the driver ports on the left side. On the data side, the infrastructure or service ports on the right. The application can be configured to run decoupled from external databases using an in-memory oracle, or ‘’mock’’, database replacement; or it can run against the test- or run-time database.
+
 ---
 
 * Adapter is created to transform applicaitn results into a form accepted by a spcecific output mechanism
