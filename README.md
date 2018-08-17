@@ -3,6 +3,8 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 
 ![Sample](./images/hexagonal-architecture-ports.png)
 
+Figure above shows an application having two active ports and several adapters for each port. The two ports are the application-controlling side and the data-retrieval side. The application can be driven by API Gateway or by an automated test suite. These are the driver ports on the left side. On the data side, the infrastructure or service ports on the right. The application can be configured to run decoupled from external databases using an in-memory oracle, or ‘’mock’’, database replacement; or it can run against the test- or run-time database.
+
 > "Dependency Rule. All dependencies cross the boundary lines in one direction, and they always point toward the components containing the higher-level policy." by Uncle Bob
 
 * **Domain model (Core Logic):** does not depend on any other layer; all other layers depend on the domain model.
