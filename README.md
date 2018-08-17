@@ -4,6 +4,24 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 ![Sample](./images/hexagonal-ports-reworked.png)
 
 Figure above shows an application having two active ports and several adapters for each port. The two ports are the user side and the database side. The application can be driven by API Gateway, AppSync or Express app. These are the driver ports on the left side. On the data side, the infrastructure or service ports on the right. The application can be configured to run decoupled from external databases using an in-memory oracle, or ‘’mock’’, database replacement; or it can run against the test- or run-time database.
+---
+
+* Adapter is created to transform applicaitn results into a form accepted by a spcecific output mechanism
+
+* The hexagonal architecture is also knon as Ports and Adapters. There are Adapters for each of the outside types. The houtside reaches the inside through the application’s API
+
+* In Figure 4.4 each client type has its own Adapter, which transforms input protocol into input that is compatible with the application’s API - the inside. Each of the hexagon’s sides represents a different kind of Port, for either input or output. Three of the clients requests arrive via the same kind of input Port (Adapters A, B, C) and one uses differnt kind of Port (Adapter D). Prehaps the three use HTTP (browser, REST, SOAP) and the one uses AMQP (for example RabbitMQ). Threre is not a srtict definition of what a Port means, making it a flixible concept. In whatever way Port are partitioned, client request arrive and the respective Adapter transforms their input. It then invokes an opereation on the application or sends the applicaiton an event. Control is thus transferred to the inside. 
+
+* We probably are not implenting the port ourselves. We actually normally don’t implement the Ports ourselves. This of a Port as HTTP and the Adapter as a Java Servlet or JAX-RS annotated class that receives method invocations from a container or framework. Or we migh create a message listeneter for NServiceBus or RabbitMQ. In that case the Port is more or less the messaging mechanism, and the adapter is the message listener, because it is the resposiblity of the message listener to grab data from the message and translate it into parameters suitable to pass into the Application’s API (the client of the domain model)
+
+* Any mnumber and type of clients may requrest through varioous Ports, but each Adapter delegates to the application using the same API.
+
+* The applicöation receives requests by way of its public API. The application boundary or inner hexagon, is also the use case (user story) boundary. Inter words, we should create use cases based on application functional requirements, not on the number of diverse clients or output mecahnism. When the application receives a request via it’s API, it uses the domain model to fulfill all requests involving the execution of bsuiness logic. Thus, the applications’s API is published as a set of Applicaiton Services. Here again, Application Services are the direct cleint of the domain model, just as when using Layers. 
+
+* The following represents a RESTful resource published using JAX-RS. A request arrives through the HTTP input Port, and the handler acts as an Adapter, delegating to an Application Service.
+
+* A big advantage with Hexagonal is that Adapters are easily developed for test purposeses. The entrie application and domain model can be designed and tested before clients and storage michanisms exists. Tests could be created to exercise ProductSErvice well before any decision is made to support HTTP/REST, SOAP or messaging Ports. Any number of test clients can be developed before the user interface wirfremaes have benne completed. Long before a presistence mechanism is selected for the project, in-memory Reposititories can be employed to mimic preisstence for the sake of testing. Significant progress can be made on the core without the need ofr supplementary technical components. 
+---
 
 ## How Does Hexagonal Architecture Work?
 
