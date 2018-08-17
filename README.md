@@ -14,9 +14,34 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 ## Three Layers of the Hexagonal Architecture
 1. **Domain Model:** Contains the main business rules / core logic of the application. It does not depend on any other layer; all other layers depend on the domain model. Independent of any external agency. Independent of the database. Independent of the UI. Independent of frameworks and libraries. Testable. The business rules can be tested without the UI, database, web server, or any other external element.
 
-2. **Ports:** The layer between the Adapter and the Domain is identified as the Ports layer. Our Domain is inside the Port. 
+2. **Ports:** A port is an abstract thing, it will not have any representation in the code base (except as a namespace/directory). It can be something like: UserInterface, API, TestRunner, Persistence, Notifications. There is a port for every way in which the use cases of an application can be invoked (through the UserInterface, through an API, through a TestRunner, etc.)
+	
 		
-3. **Adapters:** Act as a layer which serve the purpose of transforming the communication between various external actors and application logic in such a way that both remain independent **(parsing incoming event object & building response)**. In hexagonal architecture all the primary and secondary actors interact with the application ports through adapters.
+3. **Adapters:** For each of these abstract ports we need some code to make the connection really work. We need code for dealing with HTTP messages to allow users to talk to our application through the web. We need code for talking with a database (possibly speaking SQL while doing so), in order for our data to be stored in a persistent way. The code to make each port actually work is called "adapter code". We write at least one adapter for every port of our application.
+
+```
+src/
+    <BoundedContext>/
+        Domain/
+            Model/
+        Application/
+        Infrastructure/
+            <Port>/
+                <Adapter>/
+                <Adapter>/
+                ...
+            <Port>/
+                <Adapter>/
+                <Adapter>/
+                ...
+            ...
+    <BoundedContext>/
+        ...
+```
+
+
+
+Act as a layer which serve the purpose of transforming the communication between various external actors and application logic in such a way that both remain independent **(parsing incoming event object & building response)**. In hexagonal architecture all the primary and secondary actors interact with the application ports through adapters.
 	* **Primary adapter:** is a piece of code between the user and the core logic. One adapter could be a unit test function for the core logic. Another could be a controller-like function that interacts both with the graphical user interface and the core logic. The primary adapter calls the API functions of the core logic.
 		* Examples:
 			* REST Adapter Web API - interacts with events from AWS Gateway
