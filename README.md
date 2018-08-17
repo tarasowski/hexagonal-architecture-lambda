@@ -1,7 +1,7 @@
 # Hexagonal Architecture Example
 Basic overview how to use hexagonal architecture with AWS Lambda
 
-![Sample](./images/hexagonal-architecture-clean.png)
+![Sample](./images/hexagonal-architecture-ports.png)
 
 > "Dependency Rule. All dependencies cross the boundary lines in one direction, and they always point toward the components containing the higher-level policy." by Uncle Bob
 
