@@ -63,18 +63,13 @@ src/
 
 * "Dependency Rule. All dependencies cross the boundary lines in one direction, and they always point toward the components containing the higher-level policy." by Uncle Bob
 
+* Dependency injection is used to pass the secondary adapters to the core logic. Secondary ports are implemented as interfaces. Secondary adapters implement these interfaces.
+
 * Tests should focus on behaviour and by testing directly against a port testing will be ignorant of any user interface in use. A mistake many developers do is testing the internal details of the domain model. This prevents refactoring since changing the implementation details will cause the test to fail. Instead unit testing should be done at the ports boundary which is the public interface that remains inviolate even after changing the implementation details.
 
 * The software in the interface adapters layer is a set of adapters that convert data from the format most convenient for the use cases and entities, to the format most convenient for some external agency such as the database or the web. No code inward of this circle should know anything at all about the database. If the database is a SQL database, then all SQL should be restricted to this layer—and in particular to the parts of this layer that have to do with the database.
 
 * Typically the data that crosses the boundaries consists of simple data structures. You can use basic structs or simple data transfer objects if you like. Or the data can simply be arguments in function calls. Or you can pack it into a hashmap, or construct it into an object. The important thing is that isolated, simple data structures are passed across the boundaries. When we pass data across a boundary, it is always in the form that is most convenient for the inner circle. Many data access frameworks allow database rows and tables to be passed around the system as objects. Allowing this is an architectural error. It couples the use cases, business rules, and in some cases even the UI to the relational structure of the data.
-
-## Some Other Details
-
-* Dependency injection is used to pass the secondary adapters to the core logic
-* Secondary ports are implemented as interfaces. Secondary adapters implement these interfaces.
-* You could create a factory for adapters for a given service.
-* Any input or output of core system is implemented as an adapter (Port being its interface).
 
 ## Sources
 ---
