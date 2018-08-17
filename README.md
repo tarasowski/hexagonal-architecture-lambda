@@ -16,8 +16,20 @@ Basic overview how to use hexagonal architecture with AWS Lambda
 
 2. **Ports:** A port is an abstract thing, it will not have any representation in the code base (except as a namespace/directory). It can be something like: UserInterface, API, TestRunner, Persistence, Notifications. There is a port for every way in which the use cases of an application can be invoked (through the UserInterface, through an API, through a TestRunner, etc.)
 	
-		
-3. **Adapters:** For each of these abstract ports we need some code to make the connection really work. We need code for dealing with HTTP messages to allow users to talk to our application through the web. We need code for talking with a database (possibly speaking SQL while doing so), in order for our data to be stored in a persistent way. The code to make each port actually work is called "adapter code". We write at least one adapter for every port of our application.
+	
+3. **Adapters:** For each of these abstract ports we need some code to make the connection really work. We need code for dealing with HTTP messages to allow users to talk to our application through the web. We need code for talking with a database (possibly speaking SQL while doing so), in order for our data to be stored in a persistent way. The code to make each port actually work is called "adapter code". We write at least one adapter for every port of our application. Adapters sct as a layer which serve the purpose of transforming the communication between various external actors and application logic in such a way that both remain independent **(parsing incoming event object & building response)**.
+	* **Primary adapter:** is a piece of code between the user and the core logic. One adapter could be a unit test function for the core logic. Another could be a controller-like function that interacts both with the graphical user interface and the core logic. The primary adapter calls the API functions of the core logic.
+		* Examples:
+			* REST Adapter Web API - interacts with events from AWS Gateway
+			* Test Adapter - running unit and other tests
+			* Integration App to App - calls from other apps/services
+	* **Secondary adapter:** is an implementation of the secondary port. For instance, it can be a small class that converts application storage requests to a given database, and return the results of the database in a format requested by the secondary port. It can also be a mock database object needed to unit tests certain parts of the core logic. The core logic calls the functions of the secondary adapter.
+		* Examples: 
+			* Aurora Adapter - interacts with Aurora
+			* DynamoDB Adapter - interacts with DynamoDb
+			* Mocking adapters - You can also have a flat file adapter in case data needs to be persisted in text files and also an adapter for Mocking database for testing which just sits in the memory and acts as database.
+			* Email Adapter - interacts with the email service such as SES
+
 
 ```
 src/
@@ -38,23 +50,6 @@ src/
     <BoundedContext>/
         ...
 ```
-
-
-
-Act as a layer which serve the purpose of transforming the communication between various external actors and application logic in such a way that both remain independent **(parsing incoming event object & building response)**. In hexagonal architecture all the primary and secondary actors interact with the application ports through adapters.
-	* **Primary adapter:** is a piece of code between the user and the core logic. One adapter could be a unit test function for the core logic. Another could be a controller-like function that interacts both with the graphical user interface and the core logic. The primary adapter calls the API functions of the core logic.
-		* Examples:
-			* REST Adapter Web API - interacts with events from AWS Gateway
-			* Test Adapter - running unit and other tests
-			* Integration App to App - calls from other apps/services
-	* **Secondary adapter:** is an implementation of the secondary port. For instance, it can be a small class that converts application storage requests to a given database, and return the results of the database in a format requested by the secondary port. It can also be a mock database object needed to unit tests certain parts of the core logic. The core logic calls the functions of the secondary adapter.
-		* Examples: 
-			* Aurora Adapter - interacts with Aurora
-			* DynamoDB Adapter - interacts with DynamoDb
-			* Mocking adapters - You can also have a flat file adapter in case data needs to be persisted in text files and also an adapter for Mocking database for testing which just sits in the memory and acts as database.
-			* Email Adapter - interacts with the email service such as SES
-			
-
 ## Hexagonal Architecture Flow
 
 1. An instance of the application is created, as well as the adapters.
@@ -88,3 +83,4 @@ Act as a layer which serve the purpose of transforming the communication between
 * [Source - Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
 * [Source - Paramore](https://brightercommand.github.io/Brighter/PortsAndAdapters.html)
 * [Source - Exploring the Hexagonal Architecture](https://www.infoq.com/news/2014/10/exploring-hexagonal-architecture)
+* [Source - Layers, ports & adapters - Part 3, Ports & Adapters](https://matthiasnoback.nl/2017/08/layers-ports-and-adapters-part-3-ports-and-adapters/)
