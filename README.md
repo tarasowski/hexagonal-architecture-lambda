@@ -46,6 +46,7 @@ Figure above shows an application having two active ports and several adapters f
 * Dependency injection is used to pass the secondary adapters to the core logic
 * Secondary ports are implemented as interfaces. Secondary adapters implement these interfaces.
 * You could create a factory for adapters for a given service.
+* Any input or output of core system is implemented as an adapter (Port being its interface).
 
 
 ![Hexagonal](http://codingcanvas.com/wp-content/uploads/2015/07/image_thumb5.png)
