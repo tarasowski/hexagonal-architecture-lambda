@@ -49,7 +49,6 @@ Figure above shows an application having two active ports and several adapters f
 * Any input or output of core system is implemented as an adapter (Port being its interface).
 
 
-![Hexagonal](http://codingcanvas.com/wp-content/uploads/2015/07/image_thumb5.png)
 * [Source - Hexagonal Architecture](http://codingcanvas.com/hexagonal-architecture/)
 * [Source - Ports and Adapters](http://www.dossier-andreas.net/software_architecture/ports_and_adapters.html)
 * [Source - Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
