@@ -50,6 +50,22 @@ src/
     <BoundedContext>/
         ...
 ```
+```
+src/
+    IdentityAndAccess/
+        Domain/
+        Application/
+        Infrastructure/
+            Api/
+                Http/ # Serving a restfull HTTP API
+    Collaboration/
+        Domain/
+        Application/
+        Infrastructure/
+            IdentityAndAccess/
+                Http/ # HTTP client for I & A's REST API
+```
+
 ## Hexagonal Architecture Flow
 
 1. An instance of the application is created, as well as the adapters.
