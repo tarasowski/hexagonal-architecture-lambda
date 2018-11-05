@@ -8,7 +8,6 @@ test('should return ok from the api adapter', (assert) => {
     const calculateNewValueMock = (number, callback) => 'ok'
     
     const apiAdapter = proxyquire('../adapter-api', { './business-logic': calculateNewValueMock }).handler
-    //const apiAdapter = require('../adapter-api').handler
     
     assert.equal(apiAdapter(event), 'ok')
 })
